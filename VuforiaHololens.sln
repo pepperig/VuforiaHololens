@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VuforiaHololens", "VuforiaHololens.csproj", "{8ACCCC93-CB01-4BDC-20CF-A3C2760ED61D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VuforiaHololens.Editor", "VuforiaHololens.Editor.csproj", "{1EF835B8-303F-25BD-88DB-9F18D418316F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8ACCCC93-CB01-4BDC-20CF-A3C2760ED61D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ACCCC93-CB01-4BDC-20CF-A3C2760ED61D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ACCCC93-CB01-4BDC-20CF-A3C2760ED61D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ACCCC93-CB01-4BDC-20CF-A3C2760ED61D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EF835B8-303F-25BD-88DB-9F18D418316F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EF835B8-303F-25BD-88DB-9F18D418316F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EF835B8-303F-25BD-88DB-9F18D418316F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EF835B8-303F-25BD-88DB-9F18D418316F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
