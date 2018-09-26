@@ -19,17 +19,33 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     protected TrackableBehaviour mTrackableBehaviour;
 
     #endregion // PRIVATE_MEMBER_VARIABLES
+    GameObject box1, boxHandler;
 
     #region UNTIY_MONOBEHAVIOUR_METHODS
+    private Vector3 orientation;
 
     protected virtual void Start()
     {
+      // Debug.Log("SIZE "+ GetComponent<Renderer>().bounds.size);
+
+        //get initial orientation
+        orientation = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
+
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         if (mTrackableBehaviour)
             mTrackableBehaviour.RegisterTrackableEventHandler(this);
+
+         box1 = GameObject.FindGameObjectsWithTag("Box1")[0];
+         boxHandler = GameObject.FindGameObjectsWithTag("BoxHandler")[0];
     }
 
     #endregion // UNTIY_MONOBEHAVIOUR_METHODS
+
+    protected virtual void Update()
+    {
+        transform.eulerAngles = orientation;
+        //Debug.Log(orientation);
+    }
 
     #region PUBLIC_METHODS
 
@@ -41,12 +57,47 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         TrackableBehaviour.Status previousStatus,
         TrackableBehaviour.Status newStatus)
     {
+        
+
         if (newStatus == TrackableBehaviour.Status.DETECTED ||
             newStatus == TrackableBehaviour.Status.TRACKED ||
             newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
         {
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
-            OnTrackingFound();
+
+           
+            if (mTrackableBehaviour.TrackableName == "Astronaut")
+            {
+                string state = boxHandler.GetComponent<BoxHandler>().currstate;
+                if (state == "waitbox1") {
+                    boxHandler.GetComponent<BoxHandler>().currstate = "detectbox1";
+                    OnTrackingFound();
+                }
+                if(state == "placingbox1") OnTrackingFound();
+
+            }
+
+            if (mTrackableBehaviour.TrackableName == "Drone")
+            {
+                string state = boxHandler.GetComponent<BoxHandler>().currstate;
+                if (state == "waitbox2") {
+                    boxHandler.GetComponent<BoxHandler>().currstate = "detectbox2";
+                    OnTrackingFound();
+                }
+                if (state == "placingbox2") OnTrackingFound();
+            }
+
+
+            /*if (TrackerManager.Instance.GetTracker<PositionalDeviceTracker>() != null)
+                TrackerManager.Instance.GetTracker<PositionalDeviceTracker>().Stop();
+            //Rotational DeviceTracker
+            if (TrackerManager.Instance.GetTracker<RotationalDeviceTracker>() != null)
+                TrackerManager.Instance.GetTracker<RotationalDeviceTracker>().Stop();*/
+
+            //Object Tracker
+            /* if (TrackerManager.Instance.GetTracker<ObjectTracker>() != null)
+                 TrackerManager.Instance.GetTracker<ObjectTracker>().Stop();*/
+
         }
         else if (previousStatus == TrackableBehaviour.Status.TRACKED &&
                  newStatus == TrackableBehaviour.Status.NOT_FOUND)
@@ -69,6 +120,8 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     protected virtual void OnTrackingFound()
     {
+      
+
         var rendererComponents = GetComponentsInChildren<Renderer>(true);
         var colliderComponents = GetComponentsInChildren<Collider>(true);
         var canvasComponents = GetComponentsInChildren<Canvas>(true);
@@ -84,6 +137,13 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Enable canvas':
         foreach (var component in canvasComponents)
             component.enabled = true;
+
+        //TODO TRIAL
+
+        transform.eulerAngles = orientation;
+       
+        // if (mTrackableBehaviour)
+        //     mTrackableBehaviour.UnregisterTrackableEventHandler(this);
     }
 
 

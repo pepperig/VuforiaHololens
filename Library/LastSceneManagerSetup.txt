@@ -4,7 +4,7 @@ sceneSetups:
   isActive: 0
 - path: Assets/Scenes/1-Loading.unity
   isLoaded: 1
-  isActive: 1
+  isActive: 0
 - path: Assets/Scenes/2-HoloLens.unity
   isLoaded: 1
-  isActive: 0
+  isActive: 1
