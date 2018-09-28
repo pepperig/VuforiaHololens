@@ -136,8 +136,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 10786843}
-  m_Enabled: 1
-  m_ExtensionPropertyValues: []
+  m_Enabled: 0
 --- !u!124 &10786845
 Behaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +179,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!4 &10786847
 Transform:
   m_ObjectHideFlags: 0

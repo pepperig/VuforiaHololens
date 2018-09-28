@@ -10,6 +10,8 @@ using UnityEngine;
 using Vuforia;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.XR.WSA;
+using UnityEngine.XR.WSA.Persistence;
 
 /// <summary>
 ///     A custom handler that implements the ITrackableEventHandler interface.
@@ -25,6 +27,13 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
     #region UNTIY_MONOBEHAVIOUR_METHODS
     private Vector3 orientation;
     public GameObject  boxHandler;
+    WorldAnchorStore store = null;
+
+    private void StoreLoaded(WorldAnchorStore store)
+    {
+        this.store = store;
+        Debug.Log("ANCOR STORE SAVED");
+    }
 
     protected virtual void Start()
     {
@@ -38,6 +47,10 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
             mTrackableBehaviour.RegisterTrackableEventHandler(this);
 
         boxHandler = GameObject.FindGameObjectsWithTag("BoxHandler")[0];
+
+        //VuforiaBehaviour.Instance.enabled = false;
+
+        WorldAnchorStore.GetAsync(StoreLoaded);
     }
 
     #endregion // UNTIY_MONOBEHAVIOUR_METHODS
@@ -66,12 +79,13 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
             newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
         {
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
-            OnTrackingFound();
+           
             if (mTrackableBehaviour.TrackableName == "Oxygen")
             {
                 string state = boxHandler.GetComponent<BoxHandler>().currstate;
                 if (state == "waitpallet")
                 {
+                    OnTrackingFound();
                     boxHandler.GetComponent<BoxHandler>().currstate = "detectpallet";
                 }
 
@@ -129,8 +143,29 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
 
         //TODO TRIAL
 
-       // transform.eulerAngles = orientation;
-       
+        //WorldAnchor anchor = gameObject.AddComponent<WorldAnchor>();
+        //bool savedAnchor = false;
+        //if (!savedAnchor) // only save this once
+        //{
+        //    if (this.store != null)
+        //    {
+        //        savedAnchor = this.store.Save("PalletAnchor", anchor);
+        //        if (!savedAnchor)
+        //        {
+        //            // Anchor failed to save to the store.
+        //            // Handle errors here.
+        //            Debug.Log("ANCH" + anchor.isLocated);
+        //        }
+        //        else {
+        //            GetComponent<ImageTargetBehaviour>().enabled = false;
+        //        }
+        //    }
+        //}
+
+
+
+        // transform.eulerAngles = orientation;
+
         // if (mTrackableBehaviour)
         //     mTrackableBehaviour.UnregisterTrackableEventHandler(this);
     }

@@ -43,7 +43,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     protected virtual void Update()
     {
-        transform.eulerAngles = orientation;
+       // transform.eulerAngles = orientation;
         //Debug.Log(orientation);
     }
 
@@ -87,6 +87,17 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
                 if (state == "placingbox2") OnTrackingFound();
             }
 
+            if (mTrackableBehaviour.TrackableName == "Fissure")
+            {
+                string state = boxHandler.GetComponent<BoxHandler>().currstate;
+                if (state == "waitbox3")
+                {
+                    boxHandler.GetComponent<BoxHandler>().currstate = "detectbox3";
+                    OnTrackingFound();
+                }
+                if (state == "placingbox3") OnTrackingFound();
+            }
+
 
             /*if (TrackerManager.Instance.GetTracker<PositionalDeviceTracker>() != null)
                 TrackerManager.Instance.GetTracker<PositionalDeviceTracker>().Stop();
@@ -127,12 +138,12 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         var canvasComponents = GetComponentsInChildren<Canvas>(true);
 
         // Enable rendering:
-        foreach (var component in rendererComponents)
-            component.enabled = true;
+        //foreach (var component in rendererComponents)
+        //    component.enabled = true;
 
         // Enable colliders:
-        foreach (var component in colliderComponents)
-            component.enabled = true;
+        //foreach (var component in colliderComponents)
+        //    component.enabled = true;
 
         // Enable canvas':
         foreach (var component in canvasComponents)
