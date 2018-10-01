@@ -7,6 +7,7 @@ Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
 using UnityEngine;
+using UnityEngine.UI;
 using Vuforia;
 
 /// <summary>
@@ -20,6 +21,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     #endregion // PRIVATE_MEMBER_VARIABLES
     GameObject box1, boxHandler;
+    public GameObject message;
 
     #region UNTIY_MONOBEHAVIOUR_METHODS
     private Vector3 orientation;
@@ -69,22 +71,35 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             if (mTrackableBehaviour.TrackableName == "Astronaut")
             {
                 string state = boxHandler.GetComponent<BoxHandler>().currstate;
-                if (state == "waitbox1") {
+                if (state == "waitbox1")
+                {
                     boxHandler.GetComponent<BoxHandler>().currstate = "detectbox1";
                     OnTrackingFound();
                 }
-                if(state == "placingbox1") OnTrackingFound();
-
+                else if (state == "placingbox1") { OnTrackingFound(); }
+                else
+                {
+                    //text.text = "WRONG BOX";
+                    message.GetComponent<Text>().text = "WRONG BOX";
+                    boxHandler.GetComponent<BoxHandler>().timerStart = true;
+                }
             }
 
             if (mTrackableBehaviour.TrackableName == "Drone")
             {
                 string state = boxHandler.GetComponent<BoxHandler>().currstate;
-                if (state == "waitbox2") {
+                if (state == "waitbox2")
+                {
                     boxHandler.GetComponent<BoxHandler>().currstate = "detectbox2";
                     OnTrackingFound();
                 }
-                if (state == "placingbox2") OnTrackingFound();
+                else if (state == "placingbox2") { OnTrackingFound(); }
+                else
+                {
+                    //text.text = "WRONG BOX";
+                    message.GetComponent<Text>().text = "WRONG BOX";
+                    boxHandler.GetComponent<BoxHandler>().timerStart = true;
+                }
             }
 
             if (mTrackableBehaviour.TrackableName == "Fissure")
@@ -95,7 +110,13 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
                     boxHandler.GetComponent<BoxHandler>().currstate = "detectbox3";
                     OnTrackingFound();
                 }
-                if (state == "placingbox3") OnTrackingFound();
+                else if (state == "placingbox3") { OnTrackingFound(); }
+                else
+                {
+                    //text.text = "WRONG BOX";
+                    message.GetComponent<Text>().text = "WRONG BOX";
+                    boxHandler.GetComponent<BoxHandler>().timerStart = true;
+                }
             }
 
 
@@ -131,7 +152,10 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     protected virtual void OnTrackingFound()
     {
-      
+
+        boxHandler.GetComponent<BoxHandler>().timerStart = true;
+        message.GetComponent<Text>().text = "SCANNED OK";
+
 
         var rendererComponents = GetComponentsInChildren<Renderer>(true);
         var colliderComponents = GetComponentsInChildren<Collider>(true);

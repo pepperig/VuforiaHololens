@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoxHandler : MonoBehaviour {
 
     //public List<GameObject> vec = new List<GameObject>();
-    public GameObject box1, box2, box3, marker1, marker2, marker3;
+    public GameObject box1, box2, box3, marker1, marker2, marker3, message;
     public string currstate, nextstate;
     private const float delta = 0.02f;
-	// Use this for initialization
-	void Start () {
+    public bool timerStart = false;
+    public float timeLeft = 2.0f;
+    // Use this for initialization
+    void Start () {
 
         // box1.active = false;
         //box2.active = false;
@@ -24,6 +27,27 @@ public class BoxHandler : MonoBehaviour {
         //Debug.Log("BOX z" + box1.transform.position.z);
 
         //Debug.Log("MAGNITUDE" + marker1.transform.position.magnitude);
+
+
+        if (timerStart)
+        {
+            //Debug.Log("TIMER START");
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0)
+            {
+                //text.text = "";
+                message.GetComponent<Text>().text = "";
+                timerStart = false;
+                //Debug.Log("TIMER STOP");
+            }
+        }
+        else
+        {
+
+            timeLeft = 2.0f;
+        }
+
+
         if (currstate == "detectpallet")
         {
             currstate = "waitbox1";

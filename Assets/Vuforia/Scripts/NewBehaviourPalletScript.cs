@@ -7,6 +7,7 @@ Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
 using UnityEngine;
+using UnityEngine.UI;
 using Vuforia;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +27,8 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
 
     #region UNTIY_MONOBEHAVIOUR_METHODS
     private Vector3 orientation;
-    public GameObject  boxHandler;
+    private GameObject  boxHandler;
+    public GameObject message;
     WorldAnchorStore store = null;
 
     private void StoreLoaded(WorldAnchorStore store)
@@ -122,7 +124,8 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
 
     protected virtual void OnTrackingFound()
     {
-
+        boxHandler.GetComponent<BoxHandler>().timerStart = true;
+        message.GetComponent<Text>().text = "SCANNED OK";
         GetComponent<ImageTargetBehaviour>().enabled = false;
 
         var rendererComponents = GetComponentsInChildren<Renderer>(true);
