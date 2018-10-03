@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using UnityEngine.Networking;
+using System.IO;
+using System;
+
 public class BoxHandler : MonoBehaviour {
 
     //public List<GameObject> vec = new List<GameObject>();
@@ -11,6 +15,8 @@ public class BoxHandler : MonoBehaviour {
     private const float delta = 0.02f;
     public bool timerStart = false;
     public float timeLeft = 2.0f;
+    public GameObject network;
+
     // Use this for initialization
     void Start () {
 
@@ -55,6 +61,12 @@ public class BoxHandler : MonoBehaviour {
 
         if (currstate == "detectbox1") {
 
+            network.GetComponent<network>().GET("http://192.168.1.173:8000?box=1", (UnityWebRequest h) => {
+
+                Debug.Log(h.downloadHandler.text);
+
+            });
+
             box1.GetComponent<MeshRenderer>().enabled = true;
             currstate = "placingbox1";
         }
@@ -89,6 +101,11 @@ public class BoxHandler : MonoBehaviour {
 
             box2.GetComponent<MeshRenderer>().enabled = true;
             currstate = "placingbox2";
+            network.GetComponent<network>().GET("http://192.168.1.173:8000?box=2", (UnityWebRequest h) => {
+
+                Debug.Log(h.downloadHandler.text);
+
+            });
         }
 
 
@@ -124,6 +141,11 @@ public class BoxHandler : MonoBehaviour {
 
             box3.GetComponent<MeshRenderer>().enabled = true;
             currstate = "placingbox3";
+            network.GetComponent<network>().GET("http://192.168.1.173:8000?box=3", (UnityWebRequest h) => {
+
+                Debug.Log(h.downloadHandler.text);
+
+            });
         }
 
 

@@ -245,6 +245,7 @@
     <Compile Include="Assets\Common\SplashAbout\LoadingScreen.cs" />
     <Compile Include="Assets\Common\TapHandler.cs" />
     <Compile Include="Assets\Common\TrackableSettings.cs" />
+    <Compile Include="Assets\network.cs" />
     <Compile Include="Assets\SampleResources\Scripts\CustomTurnOffBehaviour.cs" />
     <Compile Include="Assets\SampleResources\Scripts\VoiceCommands.cs" />
     <Compile Include="Assets\size.cs" />
