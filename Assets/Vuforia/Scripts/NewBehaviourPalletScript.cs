@@ -132,6 +132,7 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
         var colliderComponents = GetComponentsInChildren<Collider>(true);
         var canvasComponents = GetComponentsInChildren<Canvas>(true);
 
+        rendererComponents[0].enabled = true;
         // Enable rendering:
         //foreach (var component in rendererComponents)
         //    component.enabled = true;
