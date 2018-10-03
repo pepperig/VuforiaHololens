@@ -248,6 +248,7 @@
     <Compile Include="Assets\SampleResources\Scripts\CustomTurnOffBehaviour.cs" />
     <Compile Include="Assets\SampleResources\Scripts\VoiceCommands.cs" />
     <Compile Include="Assets\size.cs" />
+    <Compile Include="Assets\SpeechManager.cs" />
     <Compile Include="Assets\Vuforia\Scripts\CameraCache.cs" />
     <Compile Include="Assets\Vuforia\Scripts\DefaultInitializationErrorHandler.cs" />
     <Compile Include="Assets\Vuforia\Scripts\DefaultSmartTerrainEventHandler.cs" />

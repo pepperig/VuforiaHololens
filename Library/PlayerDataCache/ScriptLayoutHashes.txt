@@ -269,3 +269,4 @@ a9e1c36c671666e79706791e556d5100 Vuforia.UnityExtensions.dll:Vuforia.VuMarkBehav
 05524b8f659e7bfe5756d1335fec24ba Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
 15bea26698002c6c4a3087131232ce5c Vuforia.UnityExtensions.dll:Vuforia.WordBehaviour
 eced519d01696326a778010cfadfd655 Assembly-CSharp.dll:.CustomTurnOffBehaviour
+e5669775b003ce659398965ca325eea5 Assembly-CSharp.dll:.SpeechManager
