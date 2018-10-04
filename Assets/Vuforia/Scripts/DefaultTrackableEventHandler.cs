@@ -28,7 +28,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     protected virtual void Start()
     {
-      // Debug.Log("SIZE "+ GetComponent<Renderer>().bounds.size);
+        // Debug.Log("SIZE "+ GetComponent<Renderer>().bounds.size);
 
         //get initial orientation
         orientation = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
@@ -37,15 +37,15 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         if (mTrackableBehaviour)
             mTrackableBehaviour.RegisterTrackableEventHandler(this);
 
-         box1 = GameObject.FindGameObjectsWithTag("Box1")[0];
-         boxHandler = GameObject.FindGameObjectsWithTag("BoxHandler")[0];
+        box1 = GameObject.FindGameObjectsWithTag("Box1")[0];
+        boxHandler = GameObject.FindGameObjectsWithTag("BoxHandler")[0];
     }
 
     #endregion // UNTIY_MONOBEHAVIOUR_METHODS
 
     protected virtual void Update()
     {
-       // transform.eulerAngles = orientation;
+        // transform.eulerAngles = orientation;
         //Debug.Log(orientation);
     }
 
@@ -59,7 +59,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         TrackableBehaviour.Status previousStatus,
         TrackableBehaviour.Status newStatus)
     {
-        
+
 
         if (newStatus == TrackableBehaviour.Status.DETECTED ||
             newStatus == TrackableBehaviour.Status.TRACKED ||
@@ -67,7 +67,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         {
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
 
-           
+
             if (mTrackableBehaviour.TrackableName == "Astronaut")
             {
                 string state = boxHandler.GetComponent<BoxHandler>().currstate;
@@ -176,7 +176,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         //TODO TRIAL
 
         transform.eulerAngles = orientation;
-       
+
         // if (mTrackableBehaviour)
         //     mTrackableBehaviour.UnregisterTrackableEventHandler(this);
     }

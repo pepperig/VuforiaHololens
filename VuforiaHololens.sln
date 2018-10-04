@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VuforiaHololens", "VuforiaHololens.csproj", "{8ACCCC93-CB01-4BDC-20CF-A3C2760ED61D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VuforiaHololens.Editor", "VuforiaHololens.Editor.csproj", "{1EF835B8-303F-25BD-88DB-9F18D418316F}"
