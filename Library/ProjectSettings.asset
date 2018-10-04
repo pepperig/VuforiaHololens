@@ -682,9 +682,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: bed7d579-dd4b-4820-9b56-524ed7dfa808
-  projectName: VuforiaHololens
-  organizationId: unitygiu
+  cloudProjectId: 108bfc69-81af-4106-b18d-7a01f019cfa9
+  projectName: Vuforia HoloLens Sample
+  organizationId: unity_dix1ne33aotijg
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

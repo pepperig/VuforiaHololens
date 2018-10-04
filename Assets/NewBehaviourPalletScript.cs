@@ -30,6 +30,7 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
     private GameObject boxHandler;
     public GameObject message;
     WorldAnchorStore store = null;
+    public GameObject pallet;
 
     private void StoreLoaded(WorldAnchorStore store)
     {
@@ -132,7 +133,9 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
         var colliderComponents = GetComponentsInChildren<Collider>(true);
         var canvasComponents = GetComponentsInChildren<Canvas>(true);
 
-        rendererComponents[0].enabled = true;
+
+        pallet.GetComponent<MeshRenderer>().enabled = true;
+
         // Enable rendering:
         //foreach (var component in rendererComponents)
         //    component.enabled = true;
@@ -145,7 +148,7 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
         foreach (var component in canvasComponents)
             component.enabled = true;
 
-        OnTrackingLost();
+        //OnTrackingLost();
 
         //TODO TRIAL
 
