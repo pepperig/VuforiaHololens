@@ -161,11 +161,11 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         var colliderComponents = GetComponentsInChildren<Collider>(true);
         var canvasComponents = GetComponentsInChildren<Canvas>(true);
 
-        // Enable rendering:
+        //// Enable rendering:
         //foreach (var component in rendererComponents)
         //    component.enabled = true;
 
-        // Enable colliders:
+        ////Enable colliders:
         //foreach (var component in colliderComponents)
         //    component.enabled = true;
 

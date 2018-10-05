@@ -588,7 +588,7 @@ PlayerSettings:
   metroCertificateNotAfter: 80ab18c03383d401
   metroApplicationDescription: Vuforia HoloLens Sample
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Vuforia HoloLens Sample
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0
@@ -611,14 +611,14 @@ PlayerSettings:
       HumanInterfaceDevice: False
       InputInjectionBrokered: False
       InternetClient: True
-      InternetClientServer: False
+      InternetClientServer: True
       Location: False
       Microphone: True
       MusicLibrary: False
       Objects3D: False
       PhoneCall: False
       PicturesLibrary: True
-      PrivateNetworkClientServer: False
+      PrivateNetworkClientServer: True
       Proximity: False
       RemovableStorage: False
       SharedUserCertificates: False

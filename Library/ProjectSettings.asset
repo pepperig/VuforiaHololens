@@ -588,7 +588,7 @@ PlayerSettings:
   metroCertificateNotAfter: 80ab18c03383d401
   metroApplicationDescription: Vuforia HoloLens Sample
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Vuforia HoloLens Sample
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0

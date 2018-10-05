@@ -134,7 +134,7 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
         var canvasComponents = GetComponentsInChildren<Canvas>(true);
 
 
-        pallet.GetComponent<MeshRenderer>().enabled = true;
+        //pallet.GetComponent<MeshRenderer>().enabled = true;
 
         // Enable rendering:
         //foreach (var component in rendererComponents)
