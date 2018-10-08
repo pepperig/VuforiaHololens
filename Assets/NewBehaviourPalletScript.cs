@@ -31,6 +31,7 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
     public GameObject message;
     WorldAnchorStore store = null;
     public GameObject pallet;
+    private bool istracked = false;
 
     private void StoreLoaded(WorldAnchorStore store)
     {
@@ -60,7 +61,10 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
 
     protected virtual void Update()
     {
-        // transform.eulerAngles = orientation;
+        if (istracked)
+        {
+            transform.eulerAngles = orientation;
+        }
         //Debug.Log(orientation);
     }
 
@@ -172,8 +176,11 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
         //}
 
 
+        //constant x,z variable y
+        orientation.y = transform.eulerAngles.y;
+        transform.eulerAngles = orientation;
 
-        // transform.eulerAngles = orientation;
+        istracked = true;
 
         // if (mTrackableBehaviour)
         //     mTrackableBehaviour.UnregisterTrackableEventHandler(this);

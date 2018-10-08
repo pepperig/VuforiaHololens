@@ -25,6 +25,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     #region UNTIY_MONOBEHAVIOUR_METHODS
     private Vector3 orientation;
+    private bool istracked = false;
 
     protected virtual void Start()
     {
@@ -45,7 +46,13 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     protected virtual void Update()
     {
-        // transform.eulerAngles = orientation;
+        if (istracked)
+        {
+            orientation = transform.eulerAngles;
+            orientation.x = 0;
+            orientation.z = 0;
+            transform.eulerAngles = orientation;
+        }
         //Debug.Log(orientation);
     }
 
@@ -175,7 +182,13 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
         //TODO TRIAL
 
+        //constant x,z variable y
+        orientation.y = transform.eulerAngles.y;
+        orientation.x = 0;
+        orientation.z = 0;
         transform.eulerAngles = orientation;
+
+        istracked = true;
 
         // if (mTrackableBehaviour)
         //     mTrackableBehaviour.UnregisterTrackableEventHandler(this);
