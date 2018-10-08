@@ -10,12 +10,13 @@ using System;
 public class BoxHandler : MonoBehaviour {
 
     //public List<GameObject> vec = new List<GameObject>();
-    public GameObject box1, box2, box3, marker1, marker2, marker3, message;
+    public GameObject box1, box2, box3, marker1, marker2, marker3, message, boxtoskip, markertoskip;
     public string currstate, nextstate;
     private const float delta = 0.02f;
     public bool timerStart = false;
     public float timeLeft = 2.0f;
     public GameObject network;
+    public bool skip=false;
 
     // Use this for initialization
     void Start () {
@@ -89,11 +90,11 @@ public class BoxHandler : MonoBehaviour {
                 currstate = "waitbox2";
             }
         }
-        else if (currstate == "placingbox1"){
+        //else if (currstate == "placingbox1"){
 
-            box1.GetComponent<MeshRenderer>().enabled = true;
-            //box1.active = true;
-        }
+        //    box1.GetComponent<MeshRenderer>().enabled = true;
+        //    box1.active = true;
+        //}
 
 
         if (currstate == "detectbox2")
@@ -123,25 +124,48 @@ public class BoxHandler : MonoBehaviour {
             if (alignx && aligny && alignz)
             {
                 box2.GetComponent<MeshRenderer>().enabled = false;
-                currstate = "waitbox3";
+                currstate = "waitboxtoskip";
             }
            
         }
-        else if (currstate == "placingbox2")
+        //else if (currstate == "placingbox2")
+        //{
+
+        //    box2.GetComponent<MeshRenderer>().enabled = true;
+        //    box1.active = true;
+        //}
+
+        if (currstate == "detectboxtoskip")
         {
 
-            box2.GetComponent<MeshRenderer>().enabled = true;
-            //box1.active = true;
+            boxtoskip.GetComponent<MeshRenderer>().enabled = true;
+            currstate = "placingboxtoskip";
+            network.GetComponent<network>().GET("http://192.168.1.173:8000?box=3", (UnityWebRequest h) => {
+
+                Debug.Log(h.downloadHandler.text);
+
+            });
         }
 
+        if (currstate == "placingboxtoskip")
+        {
 
+            if (skip) {
+
+                currstate = "waitbox3";
+                boxtoskip.GetComponent<MeshRenderer>().enabled = false;
+                skip = false;
+
+            }
+
+        }
 
         if (currstate == "detectbox3")
         {
 
             box3.GetComponent<MeshRenderer>().enabled = true;
             currstate = "placingbox3";
-            network.GetComponent<network>().GET("http://192.168.1.173:8000?box=3", (UnityWebRequest h) => {
+            network.GetComponent<network>().GET("http://192.168.1.173:8000?box=4", (UnityWebRequest h) => {
 
                 Debug.Log(h.downloadHandler.text);
 
@@ -174,6 +198,6 @@ public class BoxHandler : MonoBehaviour {
             //box1.active = true;
         }
 
-
+        skip = false;
     }
 }

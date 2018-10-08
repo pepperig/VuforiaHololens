@@ -127,6 +127,23 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             }
 
 
+            if (mTrackableBehaviour.TrackableName == "marker_1")
+            {
+                string state = boxHandler.GetComponent<BoxHandler>().currstate;
+                if (state == "waitboxtoskip")
+                {
+                    boxHandler.GetComponent<BoxHandler>().currstate = "detectboxtoskip";
+                    OnTrackingFound();
+                }
+                else if (state == "placingboxtoskip") { OnTrackingFound(); }
+                else
+                {
+                    //text.text = "WRONG BOX";
+                    message.GetComponent<Text>().text = "WRONG BOX";
+                    boxHandler.GetComponent<BoxHandler>().timerStart = true;
+                }
+            }
+
             /*if (TrackerManager.Instance.GetTracker<PositionalDeviceTracker>() != null)
                 TrackerManager.Instance.GetTracker<PositionalDeviceTracker>().Stop();
             //Rotational DeviceTracker

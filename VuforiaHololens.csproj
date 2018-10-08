@@ -1102,6 +1102,7 @@
     <None Include="Assets\SampleResources\AugmentationAssets\Shaders\Character.shader" />
     <None Include="Assets\SampleResources\AugmentationAssets\Shaders\CharacterHelper.cginc" />
     <None Include="Assets\StreamingAssets\Vuforia\Device.xml" />
+    <None Include="Assets\StreamingAssets\Vuforia\Device1.xml" />
     <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Images.xml" />
     <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_ModelTarget.xml" />
     <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Object_OT.xml" />

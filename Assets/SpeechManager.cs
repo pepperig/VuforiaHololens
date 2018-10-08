@@ -50,6 +50,7 @@ public class SpeechManager : MonoBehaviour {
     {
         message.GetComponent<Text>().text = "Skip";
         boxHandler.GetComponent<BoxHandler>().timerStart = true;
+        boxHandler.GetComponent<BoxHandler>().skip = true;
     }
 
     // Update is called once per frame
