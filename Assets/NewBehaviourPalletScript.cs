@@ -130,7 +130,8 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
     protected virtual void OnTrackingFound()
     {
         boxHandler.GetComponent<BoxHandler>().timerStart = true;
-        message.GetComponent<Text>().text = "SCANNED OK";
+        message.GetComponent<TextMesh>().text = "SCANNED OK";
+        message.transform.position = transform.position;
         GetComponent<ImageTargetBehaviour>().enabled = false;
 
         var rendererComponents = GetComponentsInChildren<Renderer>(true);

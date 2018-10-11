@@ -11,6 +11,7 @@ public class BoxHandler : MonoBehaviour {
 
     //public List<GameObject> vec = new List<GameObject>();
     public GameObject box1, box2, box3, marker1, marker2, marker3, message, boxtoskip, markertoskip;
+    public GameObject item1, item2, item3, item4;
     public string currstate, nextstate;
     private const float delta = 0.02f;
     public bool timerStart = false;
@@ -18,14 +19,65 @@ public class BoxHandler : MonoBehaviour {
     public GameObject network;
     public bool skip=false;
 
+    string[] data1 = new string[] { "G0465", "1/2", "76 x 43 x 24 cm", "21 Kg", "6" };
+    string[] data2 = new string[] { "G0466", "1/2", "50 x 43 x 24 cm", "10 Kg", "7" };
+    string[] data3 = new string[] { "G0467", "1/2", "40 x 30 x 24 cm", "21 Kg", "8" };
+    string[] data4 = new string[] { "G0468", "1/2", "20 x 43 x 24 cm", "10 Kg", "9" };
+
     // Use this for initialization
     void Start () {
 
         // box1.active = false;
         //box2.active = false;
         currstate = "waitpallet";
-	}
-	
+
+        GameObject t = item1.transform.GetChild(0).transform.GetChild(0).gameObject; 
+        //for (int i = 0; i < t.transform.GetChildCount(); i++) {
+
+        //    t.transform.GetChild(i).gameObject.GetComponent<Text>().text = "ciaoo";
+        //}
+        t.transform.GetChild(0).gameObject.GetComponent<Text>().text = data1[0];
+        t.transform.GetChild(1).gameObject.GetComponent<Text>().text = data1[1];
+        t.transform.GetChild(2).gameObject.GetComponent<Text>().text = data1[2];
+        t.transform.GetChild(3).gameObject.GetComponent<Text>().text = data1[3];
+        t.transform.GetChild(4).gameObject.GetComponent<Text>().text = data1[4];
+
+        //item2
+        t = item2.transform.GetChild(0).transform.GetChild(0).gameObject;
+        t.transform.GetChild(0).gameObject.GetComponent<Text>().text = data2[0];
+        t.transform.GetChild(1).gameObject.GetComponent<Text>().text = data2[1];
+        t.transform.GetChild(2).gameObject.GetComponent<Text>().text = data2[2];
+        t.transform.GetChild(3).gameObject.GetComponent<Text>().text = data2[3];
+        t.transform.GetChild(4).gameObject.GetComponent<Text>().text = data2[4];
+
+        //item3
+        t = item3.transform.GetChild(0).transform.GetChild(0).gameObject;
+        t.transform.GetChild(0).gameObject.GetComponent<Text>().text = data3[0];
+        t.transform.GetChild(1).gameObject.GetComponent<Text>().text = data3[1];
+        t.transform.GetChild(2).gameObject.GetComponent<Text>().text = data3[2];
+        t.transform.GetChild(3).gameObject.GetComponent<Text>().text = data3[3];
+        t.transform.GetChild(4).gameObject.GetComponent<Text>().text = data3[4];
+
+        //item4
+        t = item4.transform.GetChild(0).transform.GetChild(0).gameObject;
+        t.transform.GetChild(0).gameObject.GetComponent<Text>().text = data4[0];
+        t.transform.GetChild(1).gameObject.GetComponent<Text>().text = data4[1];
+        t.transform.GetChild(2).gameObject.GetComponent<Text>().text = data4[2];
+        t.transform.GetChild(3).gameObject.GetComponent<Text>().text = data4[3];
+        t.transform.GetChild(4).gameObject.GetComponent<Text>().text = data4[4];
+
+    }
+
+    void updateData(GameObject item, string code, string np, string size, string weight, string n) {
+
+        GameObject t = item.transform.GetChild(0).transform.GetChild(0).gameObject;
+        t.transform.GetChild(0).gameObject.GetComponent<Text>().text = code;
+        t.transform.GetChild(1).gameObject.GetComponent<Text>().text = np;
+        t.transform.GetChild(2).gameObject.GetComponent<Text>().text = size;
+        t.transform.GetChild(3).gameObject.GetComponent<Text>().text = weight;
+        t.transform.GetChild(4).gameObject.GetComponent<Text>().text = n;
+
+    }
 	// Update is called once per frame
 	void Update () {
         //Debug.Log("MARKER" + marker1.transform.position.x);
@@ -35,7 +87,6 @@ public class BoxHandler : MonoBehaviour {
 
         //Debug.Log("MAGNITUDE" + marker1.transform.position.magnitude);
 
-
         if (timerStart)
         {
             //Debug.Log("TIMER START");
@@ -43,7 +94,7 @@ public class BoxHandler : MonoBehaviour {
             if (timeLeft < 0)
             {
                 //text.text = "";
-                message.GetComponent<Text>().text = "";
+                message.GetComponent<TextMesh>().text = "";
                 timerStart = false;
                 //Debug.Log("TIMER STOP");
             }
@@ -88,6 +139,12 @@ public class BoxHandler : MonoBehaviour {
             {
                 box1.GetComponent<MeshRenderer>().enabled = false;
                 currstate = "waitbox2";
+
+                updateData(item1, data2[0], data2[1], data2[2], data2[3], data2[4]);
+                updateData(item2, data3[0], data3[1], data3[2], data3[3], data3[4]);
+                updateData(item3, data4[0], data4[1], data4[2], data4[3], data4[4]);
+                item4.SetActive(false);
+
             }
         }
         //else if (currstate == "placingbox1"){
@@ -125,6 +182,9 @@ public class BoxHandler : MonoBehaviour {
             {
                 box2.GetComponent<MeshRenderer>().enabled = false;
                 currstate = "waitboxtoskip";
+                updateData(item1, data3[0], data3[1], data3[2], data3[3], data3[4]);
+                updateData(item2, data4[0], data4[1], data4[2], data4[3], data4[4]);
+                item3.SetActive(false);
             }
            
         }
@@ -155,7 +215,8 @@ public class BoxHandler : MonoBehaviour {
                 currstate = "waitbox3";
                 boxtoskip.GetComponent<MeshRenderer>().enabled = false;
                 skip = false;
-
+                updateData(item1, data4[0], data4[1], data4[2], data4[3], data4[4]);
+                item2.SetActive(false);
             }
 
         }
@@ -188,6 +249,7 @@ public class BoxHandler : MonoBehaviour {
             {
                 box3.GetComponent<MeshRenderer>().enabled = false;
                 currstate = "waitbox4";
+                item1.SetActive(false);
             }
 
         }

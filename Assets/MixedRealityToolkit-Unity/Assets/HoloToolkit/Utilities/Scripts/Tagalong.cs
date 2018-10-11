@@ -66,7 +66,7 @@ namespace HoloToolkit.Unity
             // The EnforceDistance functionality of the SimmpleTagalong has a
             // detrimental effect on this Tagalong's desired behavior.
             // Disable that behavior here.
-            EnforceDistance = false;
+            //EnforceDistance = false;
 
             // Add the FixedAngularSize script if MaintainFixedSize is true.
             if (MaintainFixedSize)

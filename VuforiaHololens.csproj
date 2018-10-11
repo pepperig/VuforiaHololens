@@ -246,6 +246,7 @@
     <Compile Include="Assets\Common\SplashAbout\LoadingScreen.cs" />
     <Compile Include="Assets\Common\TapHandler.cs" />
     <Compile Include="Assets\Common\TrackableSettings.cs" />
+    <Compile Include="Assets\follow.cs" />
     <Compile Include="Assets\MixedRealityToolkit-Unity\Assets\HoloToolkit\Boundary\Scripts\BoundaryManager.cs" />
     <Compile Include="Assets\MixedRealityToolkit-Unity\Assets\HoloToolkit\Boundary\Scripts\Edge.cs" />
     <Compile Include="Assets\MixedRealityToolkit-Unity\Assets\HoloToolkit\Boundary\Scripts\EdgeHelpers.cs" />
@@ -1012,6 +1013,8 @@
     <Compile Include="Assets\MixedRealityToolkit-Unity\Assets\HoloToolkit-UnitTests\Utilities\ReflectionTestBehaviour.cs" />
     <Compile Include="Assets\network.cs" />
     <Compile Include="Assets\NewBehaviourPalletScript.cs" />
+    <Compile Include="Assets\rotate.cs" />
+    <Compile Include="Assets\rotation.cs" />
     <Compile Include="Assets\SampleResources\Scripts\CustomTurnOffBehaviour.cs" />
     <Compile Include="Assets\SampleResources\Scripts\VoiceCommands.cs" />
     <Compile Include="Assets\size.cs" />
@@ -1103,6 +1106,7 @@
     <None Include="Assets\SampleResources\AugmentationAssets\Shaders\CharacterHelper.cginc" />
     <None Include="Assets\StreamingAssets\Vuforia\Device.xml" />
     <None Include="Assets\StreamingAssets\Vuforia\Device1.xml" />
+    <None Include="Assets\StreamingAssets\Vuforia\Device2.xml" />
     <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Images.xml" />
     <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_ModelTarget.xml" />
     <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Object_OT.xml" />

@@ -19,10 +19,11 @@ using UnityEngine.Windows.Speech;
 using System.Collections.Generic;
 using System.Linq;
 using Vuforia;
+using UnityEngine.UI;
 
 public class VoiceCommands : MonoBehaviour
 {
-
+    public GameObject text;
 // So that this builds against older versions of the Unity DLLs we need to 
 // #if the code that uses HoloLens specific features out.
 // Unity have suggested that UNITY_HOLOGRAPHIC should be defined but we
@@ -70,6 +71,22 @@ public class VoiceCommands : MonoBehaviour
                 }
             }
             Debug.Log("Stop Extended Tracking");
+        });
+
+
+
+        keywords.Add("Start Vuforia", () =>
+        {
+            text.GetComponent<Text>().text = "Start Vuforia";
+            VuforiaBehaviour.Instance.enabled = true;
+
+        });
+
+        keywords.Add("Stop Vuforia", () =>
+        {
+            text.GetComponent<Text>().text = "Stop Vuforia";
+            VuforiaBehaviour.Instance.enabled = false;
+
         });
 
         // Tell the KeywordRecognizer about our keywords.

@@ -9,6 +9,7 @@ TagManager:
   - Box3
   - BoxHandler
   - BoxToSkip
+  - TagAlong
   layers:
   - Default
   - TransparentFX

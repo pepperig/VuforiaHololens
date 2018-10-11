@@ -9,6 +9,7 @@ Confidential and Proprietary - Protected under copyright and other laws.
 using UnityEngine;
 using UnityEngine.UI;
 using Vuforia;
+using HoloToolkit.Unity;
 
 /// <summary>
 ///     A custom handler that implements the ITrackableEventHandler interface.
@@ -21,7 +22,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     #endregion // PRIVATE_MEMBER_VARIABLES
     GameObject box1, boxHandler;
-    public GameObject message;
+    public GameObject message, marker;
 
     #region UNTIY_MONOBEHAVIOUR_METHODS
     private Vector3 orientation;
@@ -81,14 +82,17 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
                 if (state == "waitbox1")
                 {
                     boxHandler.GetComponent<BoxHandler>().currstate = "detectbox1";
+                    boxHandler.GetComponent<BoxHandler>().timerStart = true;
+                    message.GetComponent<TextMesh>().text = "SCANNED OK";
+                    message.transform.position = marker.transform.position + new Vector3(0.0f,0.05f,0.0f);
                     OnTrackingFound();
                 }
                 else if (state == "placingbox1") { OnTrackingFound(); }
                 else
-                {
-                    //text.text = "WRONG BOX";
-                    message.GetComponent<Text>().text = "WRONG BOX";
+                {                   
                     boxHandler.GetComponent<BoxHandler>().timerStart = true;
+                    message.GetComponent<TextMesh>().text = "WRONG BOX";
+                    message.transform.position = marker.transform.position + new Vector3(0.0f, 0.05f, 0.0f);
                 }
             }
 
@@ -98,14 +102,18 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
                 if (state == "waitbox2")
                 {
                     boxHandler.GetComponent<BoxHandler>().currstate = "detectbox2";
+                    boxHandler.GetComponent<BoxHandler>().timerStart = true;
+                    message.GetComponent<TextMesh>().text = "SCANNED OK";
+                    message.transform.position = marker.transform.position + new Vector3(0.0f, 0.05f, 0.0f);
                     OnTrackingFound();
                 }
                 else if (state == "placingbox2") { OnTrackingFound(); }
                 else
                 {
                     //text.text = "WRONG BOX";
-                    message.GetComponent<Text>().text = "WRONG BOX";
                     boxHandler.GetComponent<BoxHandler>().timerStart = true;
+                    message.GetComponent<TextMesh>().text = "WRONG BOX";
+                    message.transform.position = marker.transform.position + new Vector3(0.0f, 0.05f, 0.0f);
                 }
             }
 
@@ -115,32 +123,40 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
                 if (state == "waitbox3")
                 {
                     boxHandler.GetComponent<BoxHandler>().currstate = "detectbox3";
+                    boxHandler.GetComponent<BoxHandler>().timerStart = true;
+                    message.GetComponent<TextMesh>().text = "SCANNED OK";
+                    message.transform.position = marker.transform.position + new Vector3(0.0f, 0.05f, 0.0f);
                     OnTrackingFound();
                 }
                 else if (state == "placingbox3") { OnTrackingFound(); }
                 else
                 {
                     //text.text = "WRONG BOX";
-                    message.GetComponent<Text>().text = "WRONG BOX";
                     boxHandler.GetComponent<BoxHandler>().timerStart = true;
+                    message.GetComponent<TextMesh>().text = "WRONG BOX";
+                    message.transform.position = marker.transform.position + new Vector3(0.0f, 0.05f, 0.0f);
                 }
             }
 
 
-            if (mTrackableBehaviour.TrackableName == "marker_1")
+            if (mTrackableBehaviour.TrackableName == "marker_2_2")
             {
                 string state = boxHandler.GetComponent<BoxHandler>().currstate;
                 if (state == "waitboxtoskip")
                 {
                     boxHandler.GetComponent<BoxHandler>().currstate = "detectboxtoskip";
+                    boxHandler.GetComponent<BoxHandler>().timerStart = true;
+                    message.GetComponent<TextMesh>().text = "SCANNED OK";
+                    message.transform.position = marker.transform.position + new Vector3(0.0f, 0.05f, 0.0f);
                     OnTrackingFound();
                 }
                 else if (state == "placingboxtoskip") { OnTrackingFound(); }
                 else
                 {
                     //text.text = "WRONG BOX";
-                    message.GetComponent<Text>().text = "WRONG BOX";
                     boxHandler.GetComponent<BoxHandler>().timerStart = true;
+                    message.GetComponent<TextMesh>().text = "WRONG BOX";
+                    message.transform.position = marker.transform.position + new Vector3(0.0f, 0.05f, 0.0f);
                 }
             }
 
@@ -177,8 +193,8 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     protected virtual void OnTrackingFound()
     {
 
-        boxHandler.GetComponent<BoxHandler>().timerStart = true;
-        message.GetComponent<Text>().text = "SCANNED OK";
+        //boxHandler.GetComponent<BoxHandler>().timerStart = true;
+        //message.GetComponent<Text>().text = "SCANNED OK";
 
 
         var rendererComponents = GetComponentsInChildren<Renderer>(true);
