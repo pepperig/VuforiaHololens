@@ -658,7 +658,7 @@ f71353b76b26bc1e3398d6a4fc41f790 Assembly-CSharp.dll:HoloToolkit.Examples.Protot
 26dab8c3769b5c279169efdc2a5d2bd1 Assembly-CSharp.dll:UnityGLTF.GLTFComponent
 97e0d51968a9f637800faf850b1d95a2 Assembly-CSharp.dll:HoloToolkit.Unity.UX.BoundingBoxRig
 c7126586257e3177a84485a762f0e095 Assembly-CSharp.dll:HoloToolkit.Unity.Preview.SpectatorView.Scale3DMarker
-b4110f58d4333755ecb7228357731fef Assembly-CSharp.dll:.BoxHandler
+ce54d8b42538389d69d44b2aefae7cff Assembly-CSharp.dll:.BoxHandler
 e2e0f70f6b843436afe1857f9e4b32c8 Assembly-CSharp.dll:.NewBehaviourPalletScript
 02a08591439c0ea6fee00c02dd4debfa Assembly-CSharp.dll:HoloToolkit.Unity.Preview.SpectatorView.WorldSync
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:HoloToolkit.Sharing.Tests.RemoteHeadManager

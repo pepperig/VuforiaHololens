@@ -16,7 +16,7 @@ public class BoxHandler : MonoBehaviour {
     private const float delta = 0.02f;
     public bool timerStart = false;
     public float timeLeft = 2.0f;
-    public GameObject network;
+    public GameObject network, PanelCurrBox, Compass;
     public bool skip=false;
 
     string[] data1 = new string[] { "G0465", "1/2", "76 x 43 x 24 cm", "21 Kg", "6" };
@@ -66,6 +66,9 @@ public class BoxHandler : MonoBehaviour {
         t.transform.GetChild(3).gameObject.GetComponent<Text>().text = data4[3];
         t.transform.GetChild(4).gameObject.GetComponent<Text>().text = data4[4];
 
+
+        PanelCurrBox.SetActive(false);
+        Compass.SetActive(false);
     }
 
     void updateData(GameObject item, string code, string np, string size, string weight, string n) {
@@ -78,8 +81,20 @@ public class BoxHandler : MonoBehaviour {
         t.transform.GetChild(4).gameObject.GetComponent<Text>().text = n;
 
     }
-	// Update is called once per frame
-	void Update () {
+
+    void updateCurrBoxData(GameObject item, string code, string size, string weight, string n)
+    {
+
+        GameObject t = item.transform.GetChild(1).transform.GetChild(0).gameObject;
+        t.transform.GetChild(0).gameObject.GetComponent<Text>().text = code;
+        t.transform.GetChild(1).gameObject.GetComponent<Text>().text = size;
+        t.transform.GetChild(2).gameObject.GetComponent<Text>().text = weight;
+        t.transform.GetChild(3).gameObject.GetComponent<Text>().text = n;
+
+    }
+
+    // Update is called once per frame
+    void Update () {
         //Debug.Log("MARKER" + marker1.transform.position.x);
         //Debug.Log("BOX x" + box1.transform.position.x);
         //Debug.Log("BOX y" + box1.transform.position.y);
@@ -109,6 +124,8 @@ public class BoxHandler : MonoBehaviour {
         if (currstate == "detectpallet")
         {
             currstate = "waitbox1";
+            updateCurrBoxData(PanelCurrBox, data1[0], data1[2], data1[3], data1[4]);
+            PanelCurrBox.SetActive(true);
         }
 
         if (currstate == "detectbox1") {
@@ -118,7 +135,8 @@ public class BoxHandler : MonoBehaviour {
                 Debug.Log(h.downloadHandler.text);
 
             });
-
+            PanelCurrBox.SetActive(false);
+            Compass.SetActive(true);
             box1.GetComponent<MeshRenderer>().enabled = true;
             currstate = "placingbox1";
         }
@@ -139,6 +157,9 @@ public class BoxHandler : MonoBehaviour {
             {
                 box1.GetComponent<MeshRenderer>().enabled = false;
                 currstate = "waitbox2";
+                updateCurrBoxData(PanelCurrBox, data2[0], data2[2], data2[3], data2[4]);
+                PanelCurrBox.SetActive(true);
+                Compass.SetActive(false);
 
                 updateData(item1, data2[0], data2[1], data2[2], data2[3], data2[4]);
                 updateData(item2, data3[0], data3[1], data3[2], data3[3], data3[4]);
@@ -156,7 +177,8 @@ public class BoxHandler : MonoBehaviour {
 
         if (currstate == "detectbox2")
         {
-
+            PanelCurrBox.SetActive(false);
+            Compass.SetActive(true);
             box2.GetComponent<MeshRenderer>().enabled = true;
             currstate = "placingbox2";
             network.GetComponent<network>().GET("http://192.168.1.173:8000?box=2", (UnityWebRequest h) => {
@@ -182,6 +204,9 @@ public class BoxHandler : MonoBehaviour {
             {
                 box2.GetComponent<MeshRenderer>().enabled = false;
                 currstate = "waitboxtoskip";
+                updateCurrBoxData(PanelCurrBox, data3[0], data3[2], data3[3], data3[4]);
+                PanelCurrBox.SetActive(true);
+                Compass.SetActive(false);
                 updateData(item1, data3[0], data3[1], data3[2], data3[3], data3[4]);
                 updateData(item2, data4[0], data4[1], data4[2], data4[3], data4[4]);
                 item3.SetActive(false);
@@ -197,7 +222,8 @@ public class BoxHandler : MonoBehaviour {
 
         if (currstate == "detectboxtoskip")
         {
-
+            PanelCurrBox.SetActive(false);
+            Compass.SetActive(true);
             boxtoskip.GetComponent<MeshRenderer>().enabled = true;
             currstate = "placingboxtoskip";
             network.GetComponent<network>().GET("http://192.168.1.173:8000?box=3", (UnityWebRequest h) => {
@@ -213,6 +239,9 @@ public class BoxHandler : MonoBehaviour {
             if (skip) {
 
                 currstate = "waitbox3";
+                updateCurrBoxData(PanelCurrBox, data4[0], data4[2], data4[3], data4[4]);
+                PanelCurrBox.SetActive(true);
+                Compass.SetActive(false);
                 boxtoskip.GetComponent<MeshRenderer>().enabled = false;
                 skip = false;
                 updateData(item1, data4[0], data4[1], data4[2], data4[3], data4[4]);
@@ -223,7 +252,8 @@ public class BoxHandler : MonoBehaviour {
 
         if (currstate == "detectbox3")
         {
-
+            PanelCurrBox.SetActive(false);
+            Compass.SetActive(true);
             box3.GetComponent<MeshRenderer>().enabled = true;
             currstate = "placingbox3";
             network.GetComponent<network>().GET("http://192.168.1.173:8000?box=4", (UnityWebRequest h) => {
@@ -249,6 +279,7 @@ public class BoxHandler : MonoBehaviour {
             {
                 box3.GetComponent<MeshRenderer>().enabled = false;
                 currstate = "waitbox4";
+                Compass.SetActive(false);
                 item1.SetActive(false);
             }
 
