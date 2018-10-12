@@ -139,7 +139,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             }
 
 
-            if (mTrackableBehaviour.TrackableName == "marker_2_2")
+            if (mTrackableBehaviour.TrackableName == "Oxygen")
             {
                 string state = boxHandler.GetComponent<BoxHandler>().currstate;
                 if (state == "waitboxtoskip")

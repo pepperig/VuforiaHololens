@@ -87,7 +87,7 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
         {
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
 
-            if (mTrackableBehaviour.TrackableName == "Oxygen")
+            if (mTrackableBehaviour.TrackableName == "marker_2_2")
             {
                 string state = boxHandler.GetComponent<BoxHandler>().currstate;
                 if (state == "waitpallet")

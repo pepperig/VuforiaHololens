@@ -13,7 +13,7 @@ public class BoxHandler : MonoBehaviour {
     public GameObject box1, box2, box3, marker1, marker2, marker3, message, boxtoskip, markertoskip;
     public GameObject item1, item2, item3, item4;
     public string currstate, nextstate;
-    private const float delta = 0.02f;
+    private const float delta = 0.02f*2;
     public bool timerStart = false;
     public float timeLeft = 2.0f;
     public GameObject network, PanelCurrBox, Compass;
