@@ -19,10 +19,10 @@ public class BoxHandler : MonoBehaviour {
     public GameObject network, PanelCurrBox, Compass;
     public bool skip=false;
 
-    string[] data1 = new string[] { "G0465", "1/2", "76 x 43 x 24 cm", "21 Kg", "6" };
-    string[] data2 = new string[] { "G0466", "1/2", "50 x 43 x 24 cm", "10 Kg", "7" };
-    string[] data3 = new string[] { "G0467", "1/2", "40 x 30 x 24 cm", "21 Kg", "8" };
-    string[] data4 = new string[] { "G0468", "1/2", "20 x 43 x 24 cm", "10 Kg", "9" };
+    string[] data1 = new string[] { "G0465", "1/2", "50 x 30 x 28 cm", "21 Kg", "6" };
+    string[] data2 = new string[] { "G0466", "1/2", "50 x 30 x 28 cm", "10 Kg", "7" };
+    string[] data3 = new string[] { "G0467", "1/2", "50 x 30 x 28 cm", "21 Kg", "8" };
+    string[] data4 = new string[] { "G0468", "1/2", "50 x 30 x 20 cm", "10 Kg", "9" };
 
     // Use this for initialization
     void Start () {
@@ -130,11 +130,11 @@ public class BoxHandler : MonoBehaviour {
 
         if (currstate == "detectbox1") {
 
-            network.GetComponent<network>().GET("http://192.168.1.173:8000?box=1", (UnityWebRequest h) => {
+            //network.GetComponent<network>().GET("http://192.168.1.173:8000?box=1", (UnityWebRequest h) => {
 
-                Debug.Log(h.downloadHandler.text);
+            //    Debug.Log(h.downloadHandler.text);
 
-            });
+            //});
             PanelCurrBox.SetActive(false);
             Compass.SetActive(true);
             box1.GetComponent<MeshRenderer>().enabled = true;
@@ -181,11 +181,11 @@ public class BoxHandler : MonoBehaviour {
             Compass.SetActive(true);
             box2.GetComponent<MeshRenderer>().enabled = true;
             currstate = "placingbox2";
-            network.GetComponent<network>().GET("http://192.168.1.173:8000?box=2", (UnityWebRequest h) => {
+            //network.GetComponent<network>().GET("http://192.168.1.173:8000?box=2", (UnityWebRequest h) => {
 
-                Debug.Log(h.downloadHandler.text);
+            //    Debug.Log(h.downloadHandler.text);
 
-            });
+            //});
         }
 
 
@@ -226,11 +226,11 @@ public class BoxHandler : MonoBehaviour {
             Compass.SetActive(true);
             boxtoskip.GetComponent<MeshRenderer>().enabled = true;
             currstate = "placingboxtoskip";
-            network.GetComponent<network>().GET("http://192.168.1.173:8000?box=3", (UnityWebRequest h) => {
+            //network.GetComponent<network>().GET("http://192.168.1.173:8000?box=3", (UnityWebRequest h) => {
 
-                Debug.Log(h.downloadHandler.text);
+            //    Debug.Log(h.downloadHandler.text);
 
-            });
+            //});
         }
 
         if (currstate == "placingboxtoskip")
@@ -256,11 +256,11 @@ public class BoxHandler : MonoBehaviour {
             Compass.SetActive(true);
             box3.GetComponent<MeshRenderer>().enabled = true;
             currstate = "placingbox3";
-            network.GetComponent<network>().GET("http://192.168.1.173:8000?box=4", (UnityWebRequest h) => {
+            //network.GetComponent<network>().GET("http://192.168.1.173:8000?box=4", (UnityWebRequest h) => {
 
-                Debug.Log(h.downloadHandler.text);
+            //    Debug.Log(h.downloadHandler.text);
 
-            });
+            //});
         }
 
 

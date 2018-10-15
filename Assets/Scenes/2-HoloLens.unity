@@ -2831,7 +2831,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 568549017}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.853, y: -0.18, z: 1}
+  m_LocalPosition: {x: -0.853, y: -0.18, z: 0.5}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 1580737577}
@@ -7107,8 +7107,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1348691884}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.388, y: 11, z: -0.406}
-  m_LocalScale: {x: 0.1577287, y: 5.6, z: 0.13452914}
+  m_LocalPosition: {x: -0.38800007, y: 10.2, z: -0.406}
+  m_LocalScale: {x: 0.15772869, y: 4, z: 0.13452913}
   m_Children: []
   m_Father: {fileID: 1030348366}
   m_RootOrder: 3
@@ -7722,6 +7722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   message: {fileID: 440375169}
   pallet: {fileID: 1030348361}
+  banner: {fileID: 1631833427}
 --- !u!1 &1568603662
 GameObject:
   m_ObjectHideFlags: 0
@@ -7802,7 +7803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1631833428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8912,8 +8913,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1850875714}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.77, y: -1.18, z: 0.74}
-  m_LocalScale: {x: 4.144219, y: 2.3207626, z: 2.4865313}
+  m_LocalPosition: {x: 1.7699996, y: -0.84, z: 0.73999995}
+  m_LocalScale: {x: 4.144219, y: 1.6576875, z: 2.4865315}
   m_Children: []
   m_Father: {fileID: 1973040458}
   m_RootOrder: 1

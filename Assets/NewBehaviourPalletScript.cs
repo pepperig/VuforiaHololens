@@ -30,7 +30,7 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
     private GameObject boxHandler;
     public GameObject message;
     WorldAnchorStore store = null;
-    public GameObject pallet;
+    public GameObject pallet, banner;
     private bool istracked = false;
 
     private void StoreLoaded(WorldAnchorStore store)
@@ -94,6 +94,7 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
                 {
                     OnTrackingFound();
                     boxHandler.GetComponent<BoxHandler>().currstate = "detectpallet";
+                    banner.SetActive(true);
                 }
 
             }
