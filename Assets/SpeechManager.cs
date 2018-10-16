@@ -33,7 +33,8 @@ public class SpeechManager : MonoBehaviour {
 
     void OnDestroy()
     {
-        keywordRecognizer.Dispose();
+        if(keywordRecognizer != null)
+            keywordRecognizer.Dispose();
     }
 
     private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)

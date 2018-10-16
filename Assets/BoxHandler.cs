@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using HoloToolkit.Unity;
 using UnityEngine.Networking;
 using System.IO;
 using System;
@@ -16,7 +16,7 @@ public class BoxHandler : MonoBehaviour {
     private const float delta = 0.02f*2;
     public bool timerStart = false;
     public float timeLeft = 2.0f;
-    public GameObject network, PanelCurrBox, Compass;
+    public GameObject network, PanelCurrBox, Compass, Pallet;
     public bool skip=false;
 
     string[] data1 = new string[] { "G0465", "1/2", "50 x 30 x 28 cm", "21 Kg", "6" };
@@ -123,6 +123,7 @@ public class BoxHandler : MonoBehaviour {
 
         if (currstate == "detectpallet")
         {
+            WorldAnchorManager.Instance.AttachAnchor(Pallet);
             currstate = "waitbox1";
             updateCurrBoxData(PanelCurrBox, data1[0], data1[2], data1[3], data1[4]);
             PanelCurrBox.SetActive(true);
@@ -138,6 +139,7 @@ public class BoxHandler : MonoBehaviour {
             PanelCurrBox.SetActive(false);
             Compass.SetActive(true);
             box1.GetComponent<MeshRenderer>().enabled = true;
+            //WorldAnchorManager.Instance.AttachAnchor(box1);
             currstate = "placingbox1";
         }
 
@@ -181,6 +183,7 @@ public class BoxHandler : MonoBehaviour {
             Compass.SetActive(true);
             box2.GetComponent<MeshRenderer>().enabled = true;
             currstate = "placingbox2";
+            //WorldAnchorManager.Instance.AttachAnchor(box2);
             //network.GetComponent<network>().GET("http://192.168.1.173:8000?box=2", (UnityWebRequest h) => {
 
             //    Debug.Log(h.downloadHandler.text);

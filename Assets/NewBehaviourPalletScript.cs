@@ -54,7 +54,7 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
 
         //VuforiaBehaviour.Instance.enabled = false;
 
-        WorldAnchorStore.GetAsync(StoreLoaded);
+        //WorldAnchorStore.GetAsync(StoreLoaded);
     }
 
     #endregion // UNTIY_MONOBEHAVIOUR_METHODS
@@ -156,33 +156,46 @@ public class NewBehaviourPalletScript : MonoBehaviour, ITrackableEventHandler
 
         //OnTrackingLost();
 
-        //TODO TRIAL
-
-        //WorldAnchor anchor = gameObject.AddComponent<WorldAnchor>();
-        //bool savedAnchor = false;
-        //if (!savedAnchor) // only save this once
-        //{
-        //    if (this.store != null)
-        //    {
-        //        savedAnchor = this.store.Save("PalletAnchor", anchor);
-        //        if (!savedAnchor)
-        //        {
-        //            // Anchor failed to save to the store.
-        //            // Handle errors here.
-        //            Debug.Log("ANCH" + anchor.isLocated);
-        //        }
-        //        else {
-        //            GetComponent<ImageTargetBehaviour>().enabled = false;
-        //        }
-        //    }
-        //}
-
+        
 
         //constant x,z variable y
         orientation.y = transform.eulerAngles.y;
         transform.eulerAngles = orientation;
 
         istracked = true;
+
+
+        //TODO TRIAL
+
+        //WorldAnchor anchor = gameObject.GetComponent<WorldAnchor>();
+
+        //if (anchor != null)
+        //    DestroyImmediate(anchor);
+
+
+        //anchor = gameObject.AddComponent<WorldAnchor>();
+        //Debug.Log("anchor value " + anchor);
+        //bool savedAnchor = false;
+        //if (!savedAnchor) // only save this once
+        //{
+        //    if (this.store != null)
+        //    {
+        //        store.Delete(gameObject.name);
+
+        //        savedAnchor = this.store.Save(gameObject.name, anchor);
+        //        if (!savedAnchor)
+        //        {
+        //            // Anchor failed to save to the store.
+        //            // Handle errors here.
+        //            Debug.Log("ANCH" + anchor.isLocated);
+        //        }
+        //        else
+        //        {
+        //            Debug.Log("ANCHor saved" + anchor.isLocated);
+        //            // GetComponent<ImageTargetBehaviour>().enabled = false;
+        //        }
+        //    }
+        //}
 
         // if (mTrackableBehaviour)
         //     mTrackableBehaviour.UnregisterTrackableEventHandler(this);
