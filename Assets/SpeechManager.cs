@@ -49,8 +49,8 @@ public class SpeechManager : MonoBehaviour {
 
     private void SkipCommand(PhraseRecognizedEventArgs args)
     {
-        message.GetComponent<Text>().text = "Skip";
-        boxHandler.GetComponent<BoxHandler>().timerStart = true;
+        //message.GetComponent<Text>().text = "Skip";
+        //boxHandler.GetComponent<BoxHandler>().timerStart = true;
         boxHandler.GetComponent<BoxHandler>().skip = true;
     }
 

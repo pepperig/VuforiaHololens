@@ -16,7 +16,7 @@ public class BoxHandler : MonoBehaviour {
     private const float delta = 0.02f*2;
     public bool timerStart = false;
     public float timeLeft = 2.0f;
-    public GameObject network, PanelCurrBox, Compass, Pallet;
+    public GameObject network, PanelCurrBox, Compass, Pallet, Notification;
     public bool skip=false;
 
     string[] data1 = new string[] { "G0182", "1/2", "50 x 30 x 28 cm", "21 Kg", "6" };
@@ -93,6 +93,14 @@ public class BoxHandler : MonoBehaviour {
 
     }
 
+    void showNotification(GameObject item, string message, bool hide)
+    {
+        GameObject t = item.transform.GetChild(0).transform.GetChild(0).gameObject;
+        t.transform.GetChild(0).gameObject.GetComponent<Text>().text = message;
+        item.SetActive(hide);
+
+    }
+
     // Update is called once per frame
     void Update () {
         //Debug.Log("MARKER" + marker1.transform.position.x);
@@ -102,31 +110,40 @@ public class BoxHandler : MonoBehaviour {
 
         //Debug.Log("MAGNITUDE" + marker1.transform.position.magnitude);
 
-        if (timerStart)
-        {
-            //Debug.Log("TIMER START");
-            timeLeft -= Time.deltaTime;
-            if (timeLeft < 0)
-            {
-                //text.text = "";
-                message.GetComponent<TextMesh>().text = "";
-                timerStart = false;
-                //Debug.Log("TIMER STOP");
-            }
-        }
-        else
-        {
+        //if (timerStart)
+        //{
+        //    //Debug.Log("TIMER START");
+        //    timeLeft -= Time.deltaTime;
+        //    if (timeLeft < 0)
+        //    {
+        //        //text.text = "";
+        //        //message.GetComponent<TextMesh>().text = "";
+        //        showNotification(Notification, "", false);
+        //        timerStart = false;
+        //        //Debug.Log("TIMER STOP");
+        //    }
+        //}
+        //else
+        //{
 
-            timeLeft = 2.0f;
-        }
+        //    timeLeft = 2.0f;
+        //}
 
 
         if (currstate == "detectpallet")
         {
             WorldAnchorManager.Instance.AttachAnchor(Pallet);
-            currstate = "waitbox1";
-            updateCurrBoxData(PanelCurrBox, data1[0], data1[2], data1[3], data1[4]);
-            PanelCurrBox.SetActive(true);
+            showNotification(Notification, "SCANNED OK", true);
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0)
+            {
+                updateCurrBoxData(PanelCurrBox, data1[0], data1[2], data1[3], data1[4]);
+                PanelCurrBox.SetActive(true);
+                showNotification(Notification, "", false);
+                timeLeft = 2.0f;
+                currstate = "waitbox1";
+            }
+           
         }
 
         if (currstate == "detectbox1") {
@@ -137,14 +154,22 @@ public class BoxHandler : MonoBehaviour {
 
             //});
             PanelCurrBox.SetActive(false);
-            Compass.SetActive(true);
             box1.GetComponent<MeshRenderer>().enabled = true;
+
+            showNotification(Notification, "SCANNED OK", true);
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0)
+            {
+                Compass.SetActive(true);
+                showNotification(Notification, "", false);
+                timeLeft = 2.0f;
+                currstate = "placingbox1";
+            }
             //WorldAnchorManager.Instance.AttachAnchor(box1);
-            currstate = "placingbox1";
+            
         }
 
-
-        if (currstate == "placingbox1")
+            if (currstate == "placingbox1")
         {
             //Debug.Log("IN RANGE");
             //box1.active = false;
@@ -155,18 +180,36 @@ public class BoxHandler : MonoBehaviour {
             if ((marker1.transform.position.y <= box1.transform.position.y + delta) && (marker1.transform.position.y >= box1.transform.position.y - delta)) aligny = true; else aligny = false;
             if ((marker1.transform.position.z <= box1.transform.position.z + delta) && (marker1.transform.position.z >= box1.transform.position.z - delta)) alignz = true; else alignz = false;
 
+            
             if (alignx && aligny && alignz)
             {
                 box1.GetComponent<MeshRenderer>().enabled = false;
-                currstate = "waitbox2";
-                updateCurrBoxData(PanelCurrBox, data2[0], data2[2], data2[3], data2[4]);
-                PanelCurrBox.SetActive(true);
                 Compass.SetActive(false);
+                showNotification(Notification, "PLACED OK", true);
+                timeLeft -= Time.deltaTime;
 
-                updateData(item1, data2[0], data2[1], data2[2], data2[3], data2[4]);
-                updateData(item2, data3[0], data3[1], data3[2], data3[3], data3[4]);
-                updateData(item3, data4[0], data4[1], data4[2], data4[3], data4[4]);
-                item4.SetActive(false);
+            }
+
+
+            if (!Compass.activeSelf)
+            {
+
+                timeLeft -= Time.deltaTime;
+                if (timeLeft < 0)
+                {
+
+                    showNotification(Notification, "", false);
+                    timeLeft = 2.0f;
+
+                    currstate = "waitbox2";
+                    updateCurrBoxData(PanelCurrBox, data2[0], data2[2], data2[3], data2[4]);
+                    PanelCurrBox.SetActive(true);
+
+                    updateData(item1, data2[0], data2[1], data2[2], data2[3], data2[4]);
+                    updateData(item2, data3[0], data3[1], data3[2], data3[3], data3[4]);
+                    updateData(item3, data4[0], data4[1], data4[2], data4[3], data4[4]);
+                    item4.SetActive(false);
+                }
 
             }
         }
@@ -180,15 +223,24 @@ public class BoxHandler : MonoBehaviour {
         if (currstate == "detectbox2")
         {
             PanelCurrBox.SetActive(false);
-            Compass.SetActive(true);
             box2.GetComponent<MeshRenderer>().enabled = true;
-            currstate = "placingbox2";
+            
             //WorldAnchorManager.Instance.AttachAnchor(box2);
             //network.GetComponent<network>().GET("http://192.168.1.173:8000?box=2", (UnityWebRequest h) => {
 
             //    Debug.Log(h.downloadHandler.text);
 
             //});
+
+            showNotification(Notification, "SCANNED OK", true);
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0)
+            {
+                Compass.SetActive(true);
+                showNotification(Notification, "", false);
+                timeLeft = 2.0f;
+                currstate = "placingbox2";
+            }
         }
 
 
@@ -206,16 +258,31 @@ public class BoxHandler : MonoBehaviour {
             if (alignx && aligny && alignz)
             {
                 box2.GetComponent<MeshRenderer>().enabled = false;
-                currstate = "waitboxtoskip";
-                updateCurrBoxData(PanelCurrBox, data3[0], data3[2], data3[3], data3[4]);
-                PanelCurrBox.SetActive(true);
+
                 Compass.SetActive(false);
-                updateData(item1, data3[0], data3[1], data3[2], data3[3], data3[4]);
-                updateData(item2, data4[0], data4[1], data4[2], data4[3], data4[4]);
-                item3.SetActive(false);
+                showNotification(Notification, "PLACED OK", true);
+                timeLeft -= Time.deltaTime;
             }
-           
-        }
+
+            if (!Compass.activeSelf)
+            {
+                timeLeft -= Time.deltaTime;
+                if (timeLeft < 0)
+                {
+
+                    showNotification(Notification, "", false);
+                    timeLeft = 2.0f;
+
+                    currstate = "waitboxtoskip";
+                    updateCurrBoxData(PanelCurrBox, data3[0], data3[2], data3[3], data3[4]);
+                    PanelCurrBox.SetActive(true);
+                    updateData(item1, data3[0], data3[1], data3[2], data3[3], data3[4]);
+                    updateData(item2, data4[0], data4[1], data4[2], data4[3], data4[4]);
+                    item3.SetActive(false);
+                }
+            }
+
+            }
         //else if (currstate == "placingbox2")
         //{
 
@@ -226,29 +293,51 @@ public class BoxHandler : MonoBehaviour {
         if (currstate == "detectboxtoskip")
         {
             PanelCurrBox.SetActive(false);
-            Compass.SetActive(true);
             boxtoskip.GetComponent<MeshRenderer>().enabled = true;
-            currstate = "placingboxtoskip";
             //network.GetComponent<network>().GET("http://192.168.1.173:8000?box=3", (UnityWebRequest h) => {
 
             //    Debug.Log(h.downloadHandler.text);
 
             //});
+            showNotification(Notification, "SCANNED OK", true);
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0)
+            {
+                Compass.SetActive(true);
+                showNotification(Notification, "", false);
+                timeLeft = 2.0f;
+                currstate = "placingboxtoskip";
+            }
         }
 
         if (currstate == "placingboxtoskip")
         {
 
             if (skip) {
-
-                currstate = "waitbox3";
-                updateCurrBoxData(PanelCurrBox, data4[0], data4[2], data4[3], data4[4]);
-                PanelCurrBox.SetActive(true);
+                
                 Compass.SetActive(false);
                 boxtoskip.GetComponent<MeshRenderer>().enabled = false;
+                timeLeft -= Time.deltaTime;
+                showNotification(Notification, "SKIP PACKAGE", true);
                 skip = false;
-                updateData(item1, data4[0], data4[1], data4[2], data4[3], data4[4]);
-                item2.SetActive(false);
+            }
+
+            if (!Compass.activeSelf) {
+
+                timeLeft -= Time.deltaTime;
+                if (timeLeft < 0)
+                {
+
+                    showNotification(Notification, "", false);
+                    timeLeft = 2.0f;
+
+                    currstate = "waitbox3";
+                    updateCurrBoxData(PanelCurrBox, data4[0], data4[2], data4[3], data4[4]);
+                    PanelCurrBox.SetActive(true);
+                   
+                    updateData(item1, data4[0], data4[1], data4[2], data4[3], data4[4]);
+                    item2.SetActive(false);
+                }
             }
 
         }
@@ -256,14 +345,21 @@ public class BoxHandler : MonoBehaviour {
         if (currstate == "detectbox3")
         {
             PanelCurrBox.SetActive(false);
-            Compass.SetActive(true);
             box3.GetComponent<MeshRenderer>().enabled = true;
-            currstate = "placingbox3";
             //network.GetComponent<network>().GET("http://192.168.1.173:8000?box=4", (UnityWebRequest h) => {
 
             //    Debug.Log(h.downloadHandler.text);
 
             //});
+            showNotification(Notification, "SCANNED OK", true);
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0)
+            {
+                Compass.SetActive(true);
+                showNotification(Notification, "", false);
+                timeLeft = 2.0f;
+                currstate = "placingbox3";
+            }
         }
 
 
@@ -281,12 +377,26 @@ public class BoxHandler : MonoBehaviour {
             if (alignx && aligny && alignz)
             {
                 box3.GetComponent<MeshRenderer>().enabled = false;
-                currstate = "waitbox4";
+                showNotification(Notification, "PLACED OK", true);
+                timeLeft -= Time.deltaTime;
                 Compass.SetActive(false);
-                item1.SetActive(false);
             }
 
-        }
+            if (!Compass.activeSelf)
+            {
+                timeLeft -= Time.deltaTime;
+                if (timeLeft < 0)
+                {
+
+                    showNotification(Notification, "", false);
+                    timeLeft = 2.0f;
+
+                    currstate = "waitbox4";
+                    item1.SetActive(false);
+                }
+            }
+
+            }
         else if (currstate == "placingbox3")
         {
 
