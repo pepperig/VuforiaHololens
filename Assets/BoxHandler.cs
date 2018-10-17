@@ -19,10 +19,10 @@ public class BoxHandler : MonoBehaviour {
     public GameObject network, PanelCurrBox, Compass, Pallet;
     public bool skip=false;
 
-    string[] data1 = new string[] { "G0465", "1/2", "50 x 30 x 28 cm", "21 Kg", "6" };
-    string[] data2 = new string[] { "G0466", "1/2", "50 x 30 x 28 cm", "10 Kg", "7" };
-    string[] data3 = new string[] { "G0467", "1/2", "50 x 30 x 28 cm", "21 Kg", "8" };
-    string[] data4 = new string[] { "G0468", "1/2", "50 x 30 x 20 cm", "10 Kg", "9" };
+    string[] data1 = new string[] { "G0182", "1/2", "50 x 30 x 28 cm", "21 Kg", "6" };
+    string[] data2 = new string[] { "G0436", "1/2", "50 x 30 x 28 cm", "10 Kg", "7" };
+    string[] data3 = new string[] { "G0541", "1/2", "50 x 30 x 28 cm", "21 Kg", "8" };
+    string[] data4 = new string[] { "G0966", "1/2", "50 x 30 x 20 cm", "10 Kg", "9" };
 
     // Use this for initialization
     void Start () {

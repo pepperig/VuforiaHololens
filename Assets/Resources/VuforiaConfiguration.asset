@@ -44,11 +44,9 @@ MonoBehaviour:
       ContainsMagnet: 0
   databaseLoad:
     dataSetsToLoad:
-    - Device2
-    - VuforiaMars_Images
+    - ATOC
     dataSetsToActivate:
-    - Device2
-    - VuforiaMars_Images
+    - ATOC
   videoBackground:
     clippingMode: 0
     numDivisions: 2

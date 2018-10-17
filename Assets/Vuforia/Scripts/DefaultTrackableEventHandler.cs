@@ -76,7 +76,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
 
 
-            if (mTrackableBehaviour.TrackableName == "Astronaut")
+            if (mTrackableBehaviour.TrackableName == "box1")
             {
                 string state = boxHandler.GetComponent<BoxHandler>().currstate;
                 if (state == "waitbox1")
@@ -96,7 +96,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
                 }
             }
 
-            if (mTrackableBehaviour.TrackableName == "Drone")
+            if (mTrackableBehaviour.TrackableName == "box2")
             {
                 string state = boxHandler.GetComponent<BoxHandler>().currstate;
                 if (state == "waitbox2")
@@ -117,7 +117,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
                 }
             }
 
-            if (mTrackableBehaviour.TrackableName == "Fissure")
+            if (mTrackableBehaviour.TrackableName == "box4")
             {
                 string state = boxHandler.GetComponent<BoxHandler>().currstate;
                 if (state == "waitbox3")
@@ -139,7 +139,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             }
 
 
-            if (mTrackableBehaviour.TrackableName == "Oxygen")
+            if (mTrackableBehaviour.TrackableName == "box3")
             {
                 string state = boxHandler.GetComponent<BoxHandler>().currstate;
                 if (state == "waitboxtoskip")
