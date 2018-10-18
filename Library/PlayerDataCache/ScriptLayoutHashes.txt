@@ -528,6 +528,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 4dd8a068d40eb5fad1a7dd38ce3b6e98 Assembly-CSharp.dll:HoloToolkit.Unity.UX.LineObjectSwarm
+f8f1058654fb73f7d803bbe0c620a07e Assembly-CSharp.dll:.anchor
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:HoloToolkit.Examples.GazeRuler.DeleteLine
 0c4dc77933f6184603829ffd43182659 Assembly-CSharp.dll:HoloToolkit.Examples.InteractiveElements.MoveObjectSelectWidget
 8aa5c1c99ee5da26b779f7d54e977a39 Assembly-CSharp.dll:HoloToolkit.Unity.DirectionIndicator
@@ -658,7 +659,7 @@ f71353b76b26bc1e3398d6a4fc41f790 Assembly-CSharp.dll:HoloToolkit.Examples.Protot
 26dab8c3769b5c279169efdc2a5d2bd1 Assembly-CSharp.dll:UnityGLTF.GLTFComponent
 97e0d51968a9f637800faf850b1d95a2 Assembly-CSharp.dll:HoloToolkit.Unity.UX.BoundingBoxRig
 c7126586257e3177a84485a762f0e095 Assembly-CSharp.dll:HoloToolkit.Unity.Preview.SpectatorView.Scale3DMarker
-54f8f4da5722f86e859c408dc7fa4f2e Assembly-CSharp.dll:.BoxHandler
+f32e9db4f5173f0a7a401103571a1a97 Assembly-CSharp.dll:.BoxHandler
 e475ead33471c32b4844a81b035c5b14 Assembly-CSharp.dll:.NewBehaviourPalletScript
 02a08591439c0ea6fee00c02dd4debfa Assembly-CSharp.dll:HoloToolkit.Unity.Preview.SpectatorView.WorldSync
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:HoloToolkit.Sharing.Tests.RemoteHeadManager
@@ -705,4 +706,3 @@ d2a2bd333db22f480a8589e167314ecc Vuforia.UnityExtensions.dll:Vuforia.UserDefined
 15bea26698002c6c4a3087131232ce5c Vuforia.UnityExtensions.dll:Vuforia.WordBehaviour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UnityARCameraNearFar
 eced519d01696326a778010cfadfd655 Assembly-CSharp.dll:.CustomTurnOffBehaviour
-f8f1058654fb73f7d803bbe0c620a07e Assembly-CSharp.dll:.anchor

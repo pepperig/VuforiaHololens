@@ -11,18 +11,19 @@ public class BoxHandler : MonoBehaviour {
 
     //public List<GameObject> vec = new List<GameObject>();
     public GameObject box1, box2, box3, marker1, marker2, marker3, message, boxtoskip, markertoskip;
-    public GameObject item1, item2, item3, item4;
+    public GameObject item1, item2, item3, item4, itemDone;
     public string currstate, nextstate;
     private const float delta = 0.02f*2;
     public bool timerStart = false;
     public float timeLeft = 2.0f;
     public GameObject network, PanelCurrBox, Compass, Pallet, Notification;
     public bool skip=false;
+    public bool confirm = false;
 
-    string[] data1 = new string[] { "G0182", "1/2", "50 x 30 x 28 cm", "21 Kg", "6" };
-    string[] data2 = new string[] { "G0436", "1/2", "50 x 30 x 28 cm", "10 Kg", "7" };
-    string[] data3 = new string[] { "G0541", "1/2", "50 x 30 x 28 cm", "21 Kg", "8" };
-    string[] data4 = new string[] { "G0966", "1/2", "50 x 30 x 20 cm", "10 Kg", "9" };
+    string[] data1 = new string[] { "G0182", "1/1", "50 x 30 x 28 cm", "21 Kg", "6" };
+    string[] data2 = new string[] { "G0436", "1/1", "50 x 30 x 28 cm", "10 Kg", "7" };
+    string[] data3 = new string[] { "G0541", "1/1", "50 x 30 x 28 cm", "21 Kg", "8" };
+    string[] data4 = new string[] { "G0966", "1/1", "50 x 30 x 20 cm", "10 Kg", "9" };
 
     // Use this for initialization
     void Start () {
@@ -102,7 +103,7 @@ public class BoxHandler : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
         //Debug.Log("MARKER" + marker1.transform.position.x);
         //Debug.Log("BOX x" + box1.transform.position.x);
         //Debug.Log("BOX y" + box1.transform.position.y);
@@ -129,8 +130,13 @@ public class BoxHandler : MonoBehaviour {
         //    timeLeft = 2.0f;
         //}
 
+        if (currstate == "waitpallet")
+        {
+            showNotification(Notification, "SCAN THE PALLET TO START", true);
 
-        if (currstate == "detectpallet")
+        }
+
+            if (currstate == "detectpallet")
         {
             WorldAnchorManager.Instance.AttachAnchor(Pallet);
             showNotification(Notification, "SCANNED OK", true);
@@ -143,7 +149,7 @@ public class BoxHandler : MonoBehaviour {
                 timeLeft = 2.0f;
                 currstate = "waitbox1";
             }
-           
+
         }
 
         if (currstate == "detectbox1") {
@@ -166,10 +172,10 @@ public class BoxHandler : MonoBehaviour {
                 currstate = "placingbox1";
             }
             //WorldAnchorManager.Instance.AttachAnchor(box1);
-            
+
         }
 
-            if (currstate == "placingbox1")
+        if (currstate == "placingbox1")
         {
             //Debug.Log("IN RANGE");
             //box1.active = false;
@@ -180,7 +186,13 @@ public class BoxHandler : MonoBehaviour {
             if ((marker1.transform.position.y <= box1.transform.position.y + delta) && (marker1.transform.position.y >= box1.transform.position.y - delta)) aligny = true; else aligny = false;
             if ((marker1.transform.position.z <= box1.transform.position.z + delta) && (marker1.transform.position.z >= box1.transform.position.z - delta)) alignz = true; else alignz = false;
 
-            
+            if (confirm) {
+                alignx = true;
+                aligny = true;
+                alignz = true;
+                confirm = false;
+            }
+
             if (alignx && aligny && alignz)
             {
                 box1.GetComponent<MeshRenderer>().enabled = false;
@@ -224,7 +236,7 @@ public class BoxHandler : MonoBehaviour {
         {
             PanelCurrBox.SetActive(false);
             box2.GetComponent<MeshRenderer>().enabled = true;
-            
+
             //WorldAnchorManager.Instance.AttachAnchor(box2);
             //network.GetComponent<network>().GET("http://192.168.1.173:8000?box=2", (UnityWebRequest h) => {
 
@@ -255,6 +267,14 @@ public class BoxHandler : MonoBehaviour {
             if ((marker2.transform.position.y <= box2.transform.position.y + delta) && (marker2.transform.position.y >= box2.transform.position.y - delta)) aligny = true; else aligny = false;
             if ((marker2.transform.position.z <= box2.transform.position.z + delta) && (marker2.transform.position.z >= box2.transform.position.z - delta)) alignz = true; else alignz = false;
 
+            if (confirm)
+            {
+                alignx = true;
+                aligny = true;
+                alignz = true;
+                confirm = false;
+            }
+
             if (alignx && aligny && alignz)
             {
                 box2.GetComponent<MeshRenderer>().enabled = false;
@@ -282,7 +302,7 @@ public class BoxHandler : MonoBehaviour {
                 }
             }
 
-            }
+        }
         //else if (currstate == "placingbox2")
         //{
 
@@ -313,8 +333,14 @@ public class BoxHandler : MonoBehaviour {
         if (currstate == "placingboxtoskip")
         {
 
+            if (confirm)
+            {
+                skip = true;               
+                confirm = false;
+            }
+
             if (skip) {
-                
+
                 Compass.SetActive(false);
                 boxtoskip.GetComponent<MeshRenderer>().enabled = false;
                 timeLeft -= Time.deltaTime;
@@ -334,7 +360,7 @@ public class BoxHandler : MonoBehaviour {
                     currstate = "waitbox3";
                     updateCurrBoxData(PanelCurrBox, data4[0], data4[2], data4[3], data4[4]);
                     PanelCurrBox.SetActive(true);
-                   
+
                     updateData(item1, data4[0], data4[1], data4[2], data4[3], data4[4]);
                     item2.SetActive(false);
                 }
@@ -374,6 +400,16 @@ public class BoxHandler : MonoBehaviour {
             if ((marker3.transform.position.y <= box3.transform.position.y + delta) && (marker3.transform.position.y >= box3.transform.position.y - delta)) aligny = true; else aligny = false;
             if ((marker3.transform.position.z <= box3.transform.position.z + delta) && (marker3.transform.position.z >= box3.transform.position.z - delta)) alignz = true; else alignz = false;
 
+
+            if (confirm)
+            {
+                alignx = true;
+                aligny = true;
+                alignz = true;
+                confirm = false;
+            }
+
+
             if (alignx && aligny && alignz)
             {
                 box3.GetComponent<MeshRenderer>().enabled = false;
@@ -391,17 +427,33 @@ public class BoxHandler : MonoBehaviour {
                     showNotification(Notification, "", false);
                     timeLeft = 2.0f;
 
-                    currstate = "waitbox4";
+                    currstate = "donepallet";
+
+                    showNotification(Notification, "PALLET COMPLETED", true);
                     item1.SetActive(false);
+                    itemDone.SetActive(true);
+                   
                 }
             }
 
-            }
+        }
         else if (currstate == "placingbox3")
         {
 
             box3.GetComponent<MeshRenderer>().enabled = true;
             //box1.active = true;
+        }
+
+        if (currstate == "donepallet") {
+
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0)
+            {
+                showNotification(Notification, "", false);
+                timeLeft = 2.0f;
+                currstate = "exit";
+            }
+
         }
 
         skip = false;

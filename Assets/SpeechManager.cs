@@ -22,6 +22,7 @@ public class SpeechManager : MonoBehaviour {
 
         // Add keyword to start manipulation.
         keywordCollection.Add("Skip package", SkipCommand);
+        keywordCollection.Add("Go ahead", ConfirmCommand);
 
         boxHandler = GameObject.FindGameObjectsWithTag("BoxHandler")[0];
 
@@ -52,6 +53,13 @@ public class SpeechManager : MonoBehaviour {
         //message.GetComponent<Text>().text = "Skip";
         //boxHandler.GetComponent<BoxHandler>().timerStart = true;
         boxHandler.GetComponent<BoxHandler>().skip = true;
+    }
+
+    private void ConfirmCommand(PhraseRecognizedEventArgs args)
+    {
+        //message.GetComponent<Text>().text = "Skip";
+        //boxHandler.GetComponent<BoxHandler>().timerStart = true;
+        boxHandler.GetComponent<BoxHandler>().confirm = true;
     }
 
     // Update is called once per frame
