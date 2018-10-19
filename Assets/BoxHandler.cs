@@ -94,10 +94,14 @@ public class BoxHandler : MonoBehaviour {
 
     }
 
-    void showNotification(GameObject item, string message, bool hide)
+    void showNotification(GameObject item, string message, bool hide, bool init = false)
     {
         GameObject t = item.transform.GetChild(0).transform.GetChild(0).gameObject;
         t.transform.GetChild(0).gameObject.GetComponent<Text>().text = message;
+        if (init)
+            t.transform.GetChild(0).gameObject.GetComponent<Text>().color = new Color(0.3843F,0.3882f,0.3882f);
+        else
+            t.transform.GetChild(0).gameObject.GetComponent<Text>().color = new Color(0.192f, 0.533f, 0.4549f);
         item.SetActive(hide);
 
     }
@@ -132,7 +136,7 @@ public class BoxHandler : MonoBehaviour {
 
         if (currstate == "waitpallet")
         {
-            showNotification(Notification, "SCAN THE PALLET TO START", true);
+            showNotification(Notification, "SCAN THE PALLET TO START", true, true);
 
         }
 
